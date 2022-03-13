@@ -1,0 +1,423 @@
+ =---------------------------------------------------equal to ------------------------------------------>
+
+ db.moviedata.find({movie_name:{$eq:"Erasing David"}}).pretty()
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a63b"),
+        "movie_name" : "Erasing David",
+        "movie_genre" : "Documentary",
+        "production_year" : 2009,
+        " budget" : "$698606.06"
+}
+
+
+
+=-------------------------------------------------- not-equal to ------------------------------------------>
+
+
+
+> db.moviedata.find({movie_name:{$ne:"Erasing David"}}).pretty()
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a4fd"),
+        "movie_name" : "American Dreams in China",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1993,
+        " budget" : "$479928.14"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a4fe"),
+        "movie_name" : "Return, The (Vozvrashcheniye)",
+        "movie_genre" : "Drama",
+        "production_year" : 1996,
+        " budget" : "$921411.06"
+}
+
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a503"),
+        "movie_name" : "Picking Up the Pieces",
+        "movie_genre" : "Comedy|Fantasy",
+        "production_year" : 1995,
+        " budget" : "$818734.04"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a504"),
+        "movie_name" : "Taistelu Näsilinnasta 1918",
+        "movie_genre" : "War",
+        "production_year" : 2010,
+        " budget" : "$911264.86"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a505"),
+        "movie_name" : "Restless",
+        "movie_genre" : "Drama",
+        "production_year" : 1995,
+        " budget" : "$240277.92"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a506"),
+        "movie_name" : "Food of the Gods II",
+        "movie_genre" : "Horror|Sci-Fi",
+        "production_year" : 2008,
+        " budget" : "$881306.66"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a507"),
+        "movie_name" : "Mansfield Park",
+        "movie_genre" : "Comedy|Drama|Romance",
+        "production_year" : 1991,
+        " budget" : "$444051.55"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a508"),
+        "movie_name" : "Bambi",
+        "movie_genre" : "Animation|Children|Drama",
+        "production_year" : 1995,
+        " budget" : "$234023.88"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a509"),
+        "movie_name" : "Little Thief, The (La petite voleuse)",
+        "movie_genre" : "Crime|Drama|Romance",
+        "production_year" : 1991,
+        " budget" : "$169651.36"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a50f"),
+        "movie_name" : "Madness of King George, The",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1995,
+        " budget" : "$541027.81"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a510"),
+        "movie_name" : "The Natural Love",
+        "movie_genre" : "Documentary",
+        "production_year" : 1999,
+        " budget" : "$821023.39"
+}
+Type "it" for more
+
+
+
+
+
+-----------------------------------------------------------Sort all movies descending based on the production year---------------------------------------------------------------------->
+
+
+
+ db.moviedata.find({}).sort({production_year:1},{movie_name:1}).pretty()
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a5b9"),
+        "movie_name" : "Ghost Ship",
+        "movie_genre" : "Horror",
+        "production_year" : 1955,
+        " budget" : "$337823.71"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a57a"),
+        "movie_name" : "Katie Tippel (Keetje Tippel)",
+        "movie_genre" : "Drama",
+        "production_year" : 1959,
+        " budget" : "$182224.21"
+}
+     
+Type "it" for more
+
+
+
+
+
+
+-------------------------------------------------------------------------in query 10 skip the first 10 entries and fetch the next 5------------------------------------------>
+
+
+
+> db.moviedata.find({},{movie_name:1,_id:0}).skip(10).limit(5).pretty()
+{ "movie_name" : "Mansfield Park" }
+{ "movie_name" : "Bambi" }
+{ "movie_name" : "Little Thief, The (La petite voleuse)" }
+{ "movie_name" : "Step Up Revolution" }
+{ "movie_name" : "Trembling Before G-d" }
+>
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------PRODUCTION YEAR---------------------------------------->
+
+ db.moviedata.find({$and:[{production_year:{$gte:1700}},{production_year:{$lt:2000}}]}).pretty()
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a4fd"),
+        "movie_name" : "American Dreams in China",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1993,
+        " budget" : "$479928.14"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a4fe"),
+        "movie_name" : "Return, The (Vozvrashcheniye)",
+        "movie_genre" : "Drama",
+        "production_year" : 1996,
+        " budget" : "$921411.06"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a503"),
+        "movie_name" : "Picking Up the Pieces",
+        "movie_genre" : "Comedy|Fantasy",
+        "production_year" : 1995,
+        " budget" : "$818734.04"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a505"),
+        "movie_name" : "Restless",
+        "movie_genre" : "Drama",
+        "production_year" : 1995,
+        " budget" : "$240277.92"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a507"),
+        "movie_name" : "Mansfield Park",
+        "movie_genre" : "Comedy|Drama|Romance",
+        "production_year" : 1991,
+        " budget" : "$444051.55"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a508"),
+        "movie_name" : "Bambi",
+        "movie_genre" : "Animation|Children|Drama",
+        "production_year" : 1995,
+        " budget" : "$234023.88"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a509"),
+        "movie_name" : "Little Thief, The (La petite voleuse)",
+        "movie_genre" : "Crime|Drama|Romance",
+        "production_year" : 1991,
+        " budget" : "$169651.36"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a50c"),
+        "movie_name" : "A Justified Life: Sam Peckinpah and the High Country",
+        "movie_genre" : "Documentary",
+        "production_year" : 1996,
+        " budget" : "$932170.50"
+}
+{
+        "_id" : ObjectId("6228cadbbd78f13a79f5a50f"),
+        "movie_name" : "Madness of King George, The",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1995,
+        " budget" : "$541027.81"
+}
+
+---------------------------------------------------------------------------------------------------find all movies that are produced after 2000 with budget greater than 10000----------------->
+
+
+
+
+> db.moviedata.find({$and:[{budget:{$gte:10000}},{production_year:{$eq:2000}}]}).pretty()
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49bbb"),
+        "movie_name" : "Very Harold & Kumar 3D Christmas, A",
+        "movie_gener" : "Comedy",
+        "production_year" : 2000,
+        "budget" : 45079
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49bc8"),
+        "movie_name" : "Stanley Kubrick's Boxes",
+        "movie_gener" : "Documentary",
+        "production_year" : 2000,
+        "budget" : 78801
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49bf9"),
+        "movie_name" : "All Quiet on the Western Front",
+        "movie_gener" : "Action|Drama|War",
+        "production_year" : 2000,
+        "budget" : 27387
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49c19"),
+        "movie_name" : "Hidalgo",
+        "movie_gener" : "Adventure|Drama",
+        "production_year" : 2000,
+        "budget" : 104906
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49c22"),
+        "movie_name" : "Wooden Man's Bride, The (Yan shen)",
+        "movie_gener" : "Drama",
+        "production_year" : 2000,
+        "budget" : 55583
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49c69"),
+        "movie_name" : "Solomon Northup's Odyssey",
+        "movie_gener" : "(no genres listed)",
+        "production_year" : 2000,
+        "budget" : 38859
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49c77"),
+        "movie_name" : "Cirque du Soleil: Worlds Away",
+        "movie_gener" : "Fantasy|IMAX",
+        "production_year" : 2000,
+        "budget" : 21733
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49c96"),
+        "movie_name" : "Woodstock",
+        "movie_gener" : "Documentary|Musical",
+        "production_year" : 2000,
+        "budget" : 87600
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49cab"),
+        "movie_name" : "History Boys, The",
+        "movie_gener" : "Comedy|Drama",
+        "production_year" : 2000,
+        "budget" : 58023
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49cbf"),
+        "movie_name" : "Manderlay",
+        "movie_gener" : "Drama",
+        "production_year" : 2000,
+        "budget" : 97603
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49cca"),
+        "movie_name" : "Asterix & Obelix: Mission Cleopatra (Astérix & Obélix: Mission Cléopâtre)",
+        "movie_gener" : "Adventure|Comedy|Fantasy",
+        "production_year" : 2000,
+        "budget" : 109881
+}
+-----------------------------------------------------------------------------------------------find all movies that are produced after 2000 or budget greater than 10000--------------------------------->
+
+
+
+ db.moviedata.find({$or:[{budget:{$gte:10000}},{production_year:{$eq:2000}}]}).pretty()
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9b"),
+        "movie_name" : "Tom Sawyer",
+        "movie_gener" : "Adventure",
+        "production_year" : 1976,
+        "budget" : 82586
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9c"),
+        "movie_name" : "Stickup, The",
+        "movie_gener" : "Action|Crime|Mystery",
+        "production_year" : 2010,
+        "budget" : 103074
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9d"),
+        "movie_name" : "Wild About Harry",
+        "movie_gener" : "Comedy|Drama|Romance",
+        "production_year" : 1993,
+        "budget" : 80356
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9e"),
+        "movie_name" : "Flash Gordon Conquers the Universe",
+        "movie_gener" : "Action|Sci-Fi",
+        "production_year" : 1996,
+        "budget" : 34881
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9f"),
+        "movie_name" : "Piano, The",
+        "movie_gener" : "Drama|Romance",
+        "production_year" : 2007,
+        "budget" : 76366
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba0"),
+        "movie_name" : "Black Christmas",
+        "movie_gener" : "Action|Horror|Thriller",
+        "production_year" : 2005,
+        "budget" : 40915
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba1"),
+        "movie_name" : "Parking (Ting che)",
+        "movie_gener" : "Crime|Drama",
+        "production_year" : 1992,
+        "budget" : 29670
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba2"),
+        "movie_name" : "Devil's Diary",
+        "movie_gener" : "Drama|Horror|Mystery",
+        "production_year" : 2012,
+        "budget" : 19316
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba3"),
+        "movie_name" : "Housebound",
+        "movie_gener" : "Comedy|Horror|Thriller",
+        "production_year" : 1992,
+        "budget" : 108445
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba4"),
+        "movie_name" : "Bells from the Deep",
+        "movie_gener" : "Documentary",
+        "production_year" : 2004,
+        "budget" : 105518
+}
+
+
+-----------------------------------------neighther nor -------------------------------------------->
+
+
+
+
+ db.moviedata.find({$nor:[{budget:{$gte:10000}},{production_year:{$eq:2000}}]}).pretty()
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49b9f"),
+        "movie_name" : "Piano, The",
+        "movie_gener" : "Drama|Romance",
+        "production_year" : 2007,
+        "budget" : 76366
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba0"),
+        "movie_name" : "Black Christmas",
+        "movie_gener" : "Action|Horror|Thriller",
+        "production_year" : 2005,
+        "budget" : 40915
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba1"),
+        "movie_name" : "Parking (Ting che)",
+        "movie_gener" : "Crime|Drama",
+        "production_year" : 1992,
+        "budget" : 29670
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba2"),
+        "movie_name" : "Devil's Diary",
+        "movie_gener" : "Drama|Horror|Mystery",
+        "production_year" : 2012,
+        "budget" : 19316
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba3"),
+        "movie_name" : "Housebound",
+        "movie_gener" : "Comedy|Horror|Thriller",
+        "production_year" : 1992,
+        "budget" : 108445
+}
+{
+        "_id" : ObjectId("62298b51e07b55c84cb49ba4"),
+        "movie_name" : "Bells from the Deep",
+        "movie_gener" : "Documentary",
+        "production_year" : 2004,
+        "budget" : 105518
+}
+
